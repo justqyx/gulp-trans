@@ -22,7 +22,7 @@ module.exports = function(options) {
             return;
         }
 
-        fs.readFile('template.html', 'utf8', function(error, data) {
+        fs.readFile('./template.html', 'utf8', function(error, data) {
             if (error) {
                 return console.log(error);
             }
