@@ -4,8 +4,9 @@ var Handlebars = require('handlebars');
 var gutil = require('gulp-util');
 var through = require('through2');
 var assign = require('object-assign');
-var fs = require('fs');
 var marked = require('marked');
+var fs = require('fs');
+var path = require("path");
 
 module.exports = function(options) {
 
@@ -18,11 +19,11 @@ module.exports = function(options) {
         }
 
         if (file.isStream()) {
-            cb(new gutil.PluginError('gulp-trans', 'Streaming not supported'));
+            cb(new gutil.PluginError('gulp-md2html', 'Streaming not supported'));
             return;
         }
 
-        fs.readFile('./template.html', 'utf8', function(error, data) {
+        fs.readFile(path.join(__dirname, 'template.html'), 'utf8', function(error, data) {
             if (error) {
                 return console.log(error);
             }
@@ -36,7 +37,9 @@ module.exports = function(options) {
                     }));
                 }
 
-                file.contents = new Buffer(template({ parse_markdown: content }));
+                file.contents = new Buffer(template({
+                    parse_markdown: content
+                }));
                 file.path = gutil.replaceExtension(file.path, '.html');
 
                 cb(null, file);
