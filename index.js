@@ -22,27 +22,18 @@ module.exports = function(options) {
             return;
         }
 
-        var rs = fs.createReadStream('./template.html', {
-            encoding: 'utf-8',
-            bufferSize: 11
-        });
+        fs.readFile('template.html', 'utf8', function(error, data) {
+            if (error) {
+                return console.log(error);
+            }
 
-        var bufferHelper = new BufferHelper();
-
-        rs.on("data", function(trunk) {
-            bufferHelper.concat(trunk);
-        });
-
-        rs.on("end", function() {
-            var source = bufferHelper.toBuffer().toString();
-            var template = Handlebars.compile(source);
+            var template = Handlebars.compile(data);
 
             marked(file.contents.toString(), options, function(err, content) {
                 if (err) {
-                    cb(new gutil.PluginError('gulp-markdown', err, {
+                    return cb(new gutil.PluginError('gulp-md2html', err, {
                         fileName: file.path
                     }));
-                    return;
                 }
 
                 file.contents = new Buffer(template({ parse_markdown: content }));
@@ -50,9 +41,38 @@ module.exports = function(options) {
 
                 cb(null, file);
             });
-
         });
 
+        // var rs = fs.createReadStream('./template.html', {
+        //     encoding: 'utf-8',
+        //     bufferSize: 11
+        // });
+
+        // var bufferHelper = new BufferHelper();
+
+        // rs.on("data", function(trunk) {
+        //     bufferHelper.concat(trunk);
+        // });
+
+        // rs.on("end", function() {
+        //     var source = bufferHelper.toBuffer().toString();
+        //     var template = Handlebars.compile(source);
+
+        //     marked(file.contents.toString(), options, function(err, content) {
+        //         if (err) {
+        //             cb(new gutil.PluginError('gulp-markdown', err, {
+        //                 fileName: file.path
+        //             }));
+        //             return;
+        //         }
+
+        //         file.contents = new Buffer(template({ parse_markdown: content }));
+        //         file.path = gutil.replaceExtension(file.path, '.html');
+
+        //         cb(null, file);
+        //     });
+
+        // });
 
     });
 };
