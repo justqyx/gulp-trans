@@ -1,9 +1,9 @@
 {
-  "name": "gulp-md2html",
+  "name": "gulp-trans",
   "version": "2.0.0",
   "description": "Convert Markdown to HTML",
   "license": "MIT",
-  "repository": "justqyx/gulp-md2html",
+  "repository": "i5ting/gulp-trans",
   "author": {
     "name": "alfred sang",
     "email": "i5ting@126.com",
@@ -21,15 +21,11 @@
   ],
   "keywords": [
     "gulpplugin",
-    "markdown",
+    "markdowntohtml",
+    "markdown2html",
     "marked",
-    "md",
-    "compile",
-    "convert",
-    "markup",
-    "html",
-    "trans",
-    "toc"
+    "toc",
+    "md"
   ],
   "dependencies": {
     "art-template": "^3.0.3",
