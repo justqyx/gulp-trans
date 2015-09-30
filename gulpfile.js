@@ -15,13 +15,12 @@ gulp.task('default', function() {
 });
 
 var cssFiles = [
-    'assets/css/github.css',
-    'assets/css/github2.css',
     'assets/css/normalize.css',
-    'assets/css/demo.css',
+    'assets/css/github.css',
     'assets/css/icons.css',
     'assets/css/component.css',
-    'assets/css/zTreeStyle.css'
+    'assets/css/zTreeStyle.css',
+    'assets/css/app.css'
 ];
 
 var scriptFiles = [
