@@ -22,7 +22,7 @@ module.exports = function(options) {
             return;
         }
 
-        var rs = fs.createReadStream('template.html', {
+        var rs = fs.createReadStream('./template.html', {
             encoding: 'utf-8',
             bufferSize: 11
         });
