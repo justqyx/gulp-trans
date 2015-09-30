@@ -6,32 +6,33 @@ var minifyJS = require('gulp-uglify');
 var trans = require('./');
 
 gulp.task('default', function() {
-    gulp.src('data/src/*.md')
+    gulp.src('examples/*.md')
         .pipe(trans())
-        .pipe(gulp.dest('data/dist'));
+        .pipe(gulp.dest('examples'));
 
     var open = require("open");
-    open("./data/dist/sample.html");
+    open("./examples/sample.html");
 });
 
 var cssFiles = [
-    'assets/github.css',
-    'assets/github2.css',
-    'assets/normalize.css',
-    'assets/demo.css',
-    'assets/icons.css',
-    'assets/component.css'
+    'assets/css/github.css',
+    'assets/css/github2.css',
+    'assets/css/normalize.css',
+    'assets/css/demo.css',
+    'assets/css/icons.css',
+    'assets/css/component.css',
+    'assets/css/zTreeStyle.css'
 ];
 
 var scriptFiles = [
-    'assets/jquery.js',
-    'assets/jquery.ztree.all-3.5.min.js',
-    'assets/ztree_toc.js',
-    'assets/toc_conf.js',
-    'assets/classie.js',
-    'assets/mlpushmenu.js',
-    'assets/modernizr.custom.js',
-    'assets/jquery.transtool.js',
+    'assets/js/jquery.js',
+    'assets/js/modernizr-custom.js',
+    'assets/js/classie.js',
+    'assets/js/mlpushmenu.js',
+    'assets/js/jquery.transtool.js',
+    'assets/js/jquery.ztree.all-3.5.js',
+    'assets/js/ztree_toc.js',
+    'assets/js/app.js',
 ];
 
 gulp.task('css', function() {

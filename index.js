@@ -37,7 +37,7 @@ module.exports = function(options) {
             var source = bufferHelper.toBuffer().toString();
             var template = Handlebars.compile(source);
 
-            marked(file.contents.toString(), options, function(err, data) {
+            marked(file.contents.toString(), options, function(err, content) {
                 if (err) {
                     cb(new gutil.PluginError('gulp-markdown', err, {
                         fileName: file.path
@@ -45,7 +45,7 @@ module.exports = function(options) {
                     return;
                 }
 
-                file.contents = new Buffer(template({ parse_markdown: data }));
+                file.contents = new Buffer(template({ parse_markdown: content }));
                 file.path = gutil.replaceExtension(file.path, '.html');
 
                 cb(null, file);
